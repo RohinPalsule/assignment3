@@ -13,10 +13,10 @@ class SignalDetection:
         self.__falseAlarmrate = falseAlarms / (falseAlarms + correctRejections)
 
     def d_prime(self):
-        return (norm.ppf(self.hitRate) - norm.ppf(self.falseAlarmrate))
+        return (norm.ppf(self.__hitRate) - norm.ppf(self.__falseAlarmrate))
 
     def criterion(self):
-        return -0.5 * (norm.ppf(self.hitRate) + norm.ppf(self.falseAlarmrate))
+        return -0.5 * (norm.ppf(self.__hitRate) + norm.ppf(self.__falseAlarmrate))
  
 
 
