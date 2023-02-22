@@ -11,7 +11,10 @@ class SignalDetection:
         self.correctRejections = correctRejections
         self.__hitRate= hits / (hits+misses)
         self.__falseAlarmrate = falseAlarms / (falseAlarms + correctRejections)
-
+    def __add__(self, other):
+        return SignalDetection(self.hits + other.hits, self.misses + other.misses, self.falseAlarms + other.falseAlarms, self.correctRejections + other.correctRejections)
+    def __mul__(self, k):
+        return SignalDetection(self.hits *k, self.misses *k, self.falseAlarms *k, self.correctRejections * k)
     def d_prime(self):
         return (norm.ppf(self.__hitRate) - norm.ppf(self.__falseAlarmrate))
 
