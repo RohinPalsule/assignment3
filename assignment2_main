@@ -23,7 +23,11 @@ class SignalDetection:
         return (norm.ppf(self.hitRate()) - norm.ppf(self.falseAlarmRate()))
     def criterion(self):
         return -0.5 * (norm.ppf(self.hitRate()) + norm.ppf(self.falseAlarmRate()))
- 
+    def plot_roc(self):
+            plt.plot([0, self.falseAlarmRate(), 1], [0, self.hitRate(), 1])
+            plt.xlabel('False Alarm Rate')
+            plt.ylabel('Hit Rate')
+            plt.show()
 
 
 class TestSignalDetection(unittest.TestCase):
