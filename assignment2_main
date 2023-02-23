@@ -9,7 +9,6 @@ class SignalDetection:
         self.misses = misses
         self.falseAlarms = falseAlarms
         self.correctRejections = correctRejections
-
     def hitRate(self):
         return self.hits / (self.hits+self.misses)
     def falseAlarmRate(self):
@@ -28,7 +27,13 @@ class SignalDetection:
             plt.xlabel('False Alarm Rate')
             plt.ylabel('Hit Rate')
             plt.show()
-
+    def plot_sdt(self):
+        plt.axvline(self.criterion(), color = 'b')
+        plt.axhline(y = 0.4, color = 'r', xmin = 0.5, xmax = (self.d_prime() + 5)/10)
+        x_axis = np.arange(-5, 5, 0.01)
+        plt.plot(x_axis, norm.pdf(x_axis, 0, 1))
+        plt.plot(x_axis, norm.pdf(x_axis, self.d_prime(), 1))
+        plt.show()
 
 class TestSignalDetection(unittest.TestCase):
     def test_d_prime_zero(self):
