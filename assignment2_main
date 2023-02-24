@@ -29,14 +29,15 @@ class SignalDetection:
         plt.title('ROC Plot')
         plt.show()
     def plot_sdt(self):
-        plt.axvline((self.d_prime() / 2) + self.criterion(), color = 'b')
-        plt.axhline(y = 0.4, color = 'r', xmin = 0.5, xmax = (self.d_prime() + 5)/10)
+        plt.axvline((self.d_prime() / 2) + self.criterion(), color = 'yellow')
+        plt.axhline(y = 0.4, color = 'g', xmin = 0.5, xmax = (self.d_prime() + 5)/10)
         x_axis = np.arange(-5, 5, 0.01)
-        plt.plot(x_axis, norm.pdf(x_axis, 0, 1))
-        plt.plot(x_axis, norm.pdf(x_axis, self.d_prime(), 1))
+        plt.plot(x_axis, norm.pdf(x_axis, 0, 1), color = 'r' ,label = "Noise")
+        plt.plot(x_axis, norm.pdf(x_axis, self.d_prime(), 1), color = 'b', label = "Signal")
         plt.ylabel('Probability Density')
         plt.xlabel('Signal Strength')
         plt.title('Signal Detection Theory Plot')
+        plt.legend(loc="upper left")
         plt.show()
 
 class TestSignalDetection(unittest.TestCase):
